@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace CustomerTool.Models.DTOs
 {
     public class CustomerToUpdate
     {
+        [Required]
         public string ExistingId { get; set; } = string.Empty;
 
         public Gender Gender { get; set; }
@@ -18,6 +20,11 @@ namespace CustomerTool.Models.DTOs
         public ModelStateDictionary Validate()
         {
             var result = new ModelStateDictionary();
+
+            if (!Guid.TryParse(ExistingId, out _))
+            {
+                result.AddModelError("CustomerToUpdate.ExistingId", "Invalid Guid passed as id");
+            }
 
             if (string.IsNullOrWhiteSpace(Address))
             {
