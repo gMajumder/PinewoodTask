@@ -1,0 +1,51 @@
+﻿@page
+@using CustomerTool.Models;
+@model CustomerTool.Pages.Customers.CustomerEditModel
+
+<form method="post">
+    <input hidden asp-for="@Model.CustomerToUpdate.ExistingId" />
+    <div class="mb-3">
+        <label>Name</label>
+        <input asp-for="@Model.Customer.Name" class="form-control" readonly/>
+    </div>
+
+    <div class="mb-3">
+        <label>Date Of Birth</label>
+        <input type="date" asp-for="@Model.Customer.DateOfBirth" class="form-control" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label>Address</label>
+        <input asp-for="@Model.CustomerToUpdate.Address" class="form-control" />
+        <span asp-validation-for="CustomerToUpdate.Address" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input asp-for="@Model.CustomerToUpdate.Email" class="form-control" />
+        <span asp-validation-for="CustomerToUpdate.Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Phone</label>
+        <input asp-for="@Model.CustomerToUpdate.Phone" class="form-control" />
+        <span asp-validation-for="CustomerToUpdate.Phone" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Gender</label>
+        <select asp-for="@Model.CustomerToUpdate.Gender" asp-items="Html.GetEnumSelectList<Gender>()" style="display:block;width:100%;padding:.375rem .75rem;font-size: 1rem;font-weight: 400;line-height: 1.5;color: #212529;background-color: #fff;background-clip: padding-box;border: 1px solid #ced4da;appearance: none;border-radius: .25rem;transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;">
+            <option value="Undeclared">Choose a gender</option>
+        </select>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary" style="width:15rem">Update</button>
+        <a asp-page="CustomersList" class="btn btn-primary" style="width:15rem">Back</a>
+    </div>
+</form>
+
+@if (Model.ErrorUpdatingCustomer)
+{
+    <span>Error updating customer</span>
+}

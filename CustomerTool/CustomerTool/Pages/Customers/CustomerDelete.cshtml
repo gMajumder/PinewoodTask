@@ -1,0 +1,46 @@
+﻿@page
+@model CustomerTool.Pages.Customers.CustomerDeleteModel
+
+<form method="post" asp-page-handler="delete">
+    <input hidden asp-for="@Model.Customer.Id" />
+    <div class="mb-3">
+        <label>Name</label>
+        <input asp-for="@Model.Customer.Name" readonly class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Date Of Birth</label>
+        <input type="date" asp-for="@Model.Customer.DateOfBirth" readonly class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Address</label>
+        <input asp-for="@Model.Customer.Address" readonly class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Gender</label>
+        <input asp-for="@Model.Customer.Gender" readonly class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input asp-for="@Model.Customer.Email" readonly class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Phone</label>
+        <input asp-for="@Model.Customer.Phone" readonly class="form-control" />
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary" style="width:15rem">Delete</button>
+        <a asp-page="CustomersList" class="btn btn-primary" style="width:15rem">Back</a>
+    </div>
+</form>
+
+@if (Model.ErrorDeletingCustomer)
+{
+    <span>Error deleting customer</span>
+}
+

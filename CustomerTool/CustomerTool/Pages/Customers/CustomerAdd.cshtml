@@ -1,0 +1,52 @@
+﻿@page
+@using CustomerTool.Models;
+@model CustomerTool.Pages.Customers.CustomerAddModel
+
+<form method="post">
+    <div class="mb-3">
+        <label>Name</label>
+        <input asp-for="@Model.NewCustomer.Name" class="form-control" />
+        <span asp-validation-for="NewCustomer.Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Date Of Birth</label>
+        <input type="date" asp-for="@Model.NewCustomer.DateOfBirth" class="form-control" />
+        <span asp-validation-for="NewCustomer.DateOfBirth" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Address</label>
+        <input asp-for="@Model.NewCustomer.Address" class="form-control" />
+        <span asp-validation-for="NewCustomer.Address" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input asp-for="@Model.NewCustomer.Email" class="form-control" />
+        <span asp-validation-for="NewCustomer.Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Phone</label>
+        <input asp-for="@Model.NewCustomer.Phone" class="form-control" />
+        <span asp-validation-for="NewCustomer.Phone" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="wid">Gender</label>
+        <select asp-for="@Model.NewCustomer.Gender" asp-items="Html.GetEnumSelectList<Gender>()" style="display:block;width:100%;padding:.375rem .75rem;font-size: 1rem;font-weight: 400;line-height: 1.5;color: #212529;background-color: #fff;background-clip: padding-box;border: 1px solid #ced4da;appearance: none;border-radius: .25rem;transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;">
+            <option value="Undeclared">Choose a gender</option>
+        </select>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary" style="width:15rem">Add</button>
+        <a asp-page="CustomersList" class="btn btn-primary" style="width:15rem">Back</a>
+    </div>
+</form>
+
+@if (Model.ErrorAddingCustomer)
+{
+    <span>Error adding new customer</span>
+}

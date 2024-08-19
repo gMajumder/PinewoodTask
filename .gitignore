@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/CustomerTool/CustomerTool/obj
+/CustomerTool/CustomerTool/bin/Debug/net7.0
+/CustomerTool/.vs

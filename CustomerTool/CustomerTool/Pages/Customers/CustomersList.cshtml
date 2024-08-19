@@ -1,0 +1,54 @@
+﻿@page
+@model CustomerTool.Pages.Customers.CustomersListModel
+
+@if (Model.ErrorFetchingCustomers)
+{
+    <div class="text-warning">Unable to load customers.</div>
+}
+else
+{
+    <div>
+        <a asp-page="CustomerAdd" class="btn btn-secondary">Add Customer</a>
+    </div>
+    <br />
+
+    @if ((Model.Customers is not null && Model.Customers.Any()))
+    {
+        <div>
+            <table class="table table-bordered" style="width:80%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date Of Birth</th>
+                        <th>Gender</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var customer in Model.Customers)
+                    {
+                        <tr>
+                            <td>@customer.Name</td>
+                            <td>@customer.DateOfBirth.ToShortDateString()</td>
+                            <td>@customer.Gender.ToString()</td>
+                            <td>@customer.Address</td>
+                            <td>@customer.Email</td>
+                            <td>@customer.Phone</td>
+                            <td>
+                                <a asp-page="CustomerEdit" asp-route-customerId="@customer.Id">Edit</a>&nbsp;
+                                <a asp-page="CustomerDelete" asp-route-customerId="@customer.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="text-black">No Customers to display.</div>
+    }
+}
